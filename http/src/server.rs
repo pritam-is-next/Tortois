@@ -17,7 +17,7 @@ pub fn init(host: &str, port: i16) {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    let mut buf = [0u8 ;4096];
+    let mut buf: [u8; 4096] = [0u8 ;4096];
     match stream.read(&mut buf) {
         Ok(_) => {
             let req_str: std::borrow::Cow<'_, str> = String::from_utf8_lossy(&buf);
