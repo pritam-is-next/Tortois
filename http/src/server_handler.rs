@@ -1,7 +1,13 @@
-use std::{
-    io::{prelude::*, BufReader},
-    net::{TcpListener, TcpStream},
-};
+use std::{collections::HashMap, io::Read, net::{TcpListener, TcpStream}, sync::{Arc, LazyLock, Mutex}};
+
+struct _Sesssion {
+    data: HashMap<&'static str, &'static str>, // data user want to store in the session
+    post: HashMap<&'static str, &'static str>, // post data
+    get: HashMap<&'static str, &'static str>, // get data
+    xxx_form_data: HashMap<&'static str, &'static str>, // index and the data
+    body: HashMap<&'static str, &'static str>, // body type and the data
+}
+
 
 pub fn init(host: &str, port: i16) {
     let listener: TcpListener = TcpListener::bind(format!("{}:{}", host, port)).unwrap();

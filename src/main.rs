@@ -1,4 +1,9 @@
+use http::{self, Server};
+
 
 fn main() {
-   http::server::init("localhost", 8080);
+   let server: Server =  Server{ port: 8080, hostname: "localhost"};
+
+   server.start();
+   // s::init(, 8080);
 }
